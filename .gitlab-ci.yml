@@ -1,0 +1,20 @@
+variables:
+  CONTAINER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+services:
+  - docker:dind
+
+stages:
+  - build
+
+build:
+  image: docker:latest
+  stage: build
+  script:
+    - docker build --rm --build-arg CI_JOB_TOKEN=$CI_JOB_TOKEN -t $CONTAINER_IMAGE .
+    - docker push $CONTAINER_IMAGE
+  tags:
+    - docker
