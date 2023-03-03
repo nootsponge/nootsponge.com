@@ -2,24 +2,11 @@ import { Link } from "react-router-dom";
 
 function About() {
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "100vh",
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
+    <div class="bg-gradient-to-r from-[#956afa] to-[#8000e3] text-white flex h-screen w-full items-center justify-center flex-col">
       <img
-        alt="Loading..."
+        alt="DarkViperAU"
         src="https://cdn.discordapp.com/emojis/712701509498044446.webp?size=96&quality=lossless"
-        style={{
-          width: "96px",
-          height: "96px",
-        }}
+        class="h-auto w-auto"
         title="DarkViperAU"
       />
       <p style={{ textAlign: "center", padding: "0 0 5em 0" }}>In pogress.</p>
