@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function About() {
   return (
-    <div class="bg-gradient-to-r from-[#956afa] to-[#8000e3] text-white flex h-screen w-full items-center justify-center flex-col">
+    <div class="bg-gradient-to-r from-[#5a2fc2] to-[#834dc1] text-white flex h-screen w-full items-center justify-center flex-col">
       <img
         alt="DarkViperAU"
         src="https://cdn.discordapp.com/emojis/712701509498044446.webp?size=96&quality=lossless"
