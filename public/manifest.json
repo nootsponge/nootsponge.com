@@ -1,9 +1,0 @@
-{
-  "short_name": "NootSponge",
-  "name": "NootSponge - Homepage",
-  "icons": [],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#daa141",
-  "background_color": "#242027"
-}

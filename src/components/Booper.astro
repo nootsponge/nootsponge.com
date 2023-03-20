@@ -1,0 +1,80 @@
+---
+---
+
+<img
+  id="headshot"
+  src="/img/ren-headshot-transparent.png"
+  class="w-80 h-auto max-md:-scale-x-100"
+  alt="Loading..."
+  usemap="#boopmap"
+/>
+<map name="boopmap" id="boopmap">
+  <area
+    shape="rect"
+    style={{ cursor: "pointer" }}
+    coords="50,165,105,225"
+    alt="boop me"
+    id="boopme"
+  />
+</map>
+
+<script>
+  let button = document.getElementById("boopme");
+
+  if (button == null) {
+    throw new Error("Couldn't find boopme area");
+  }
+
+  button.addEventListener("click", (e) => {
+    boop(e);
+  });
+
+  function boop(e: MouseEvent) {
+    let xPos = e.clientX;
+    let yPos = e.clientY;
+
+    xPos -= 12.5;
+    yPos -= 27;
+
+    // create new image
+    let boop = document.createElement("img");
+    boop.src = "/img/heart-solid.png";
+    boop.style.position = "absolute";
+    boop.style.left = xPos + "px";
+    boop.style.top = yPos + "px";
+    boop.width = 25;
+    boop.height = 25;
+
+    // random rotation from -10 to 10
+    let rotation = Math.floor(Math.random() * 30) - 10;
+    boop.style.transform = "rotate(" + rotation + "deg)";
+
+    boop.classList.add("origin-center", "transition", "duration-[2000ms]");
+
+    // add to document
+    document.body.appendChild(boop);
+
+    // translate up and fade out
+    boop.animate(
+      [
+        {
+          transform: "translateY(0px) rotate(" + rotation + "deg)",
+          opacity: 1,
+        },
+        {
+          transform: "translateY(-100px) rotate(" + rotation + "deg)",
+          opacity: 0,
+        },
+      ],
+      {
+        duration: 2000,
+        easing: "ease-in-out",
+      }
+    );
+
+    // remove from document after animation
+    setTimeout(() => {
+      boop.remove();
+    }, 1900);
+  }
+</script>
