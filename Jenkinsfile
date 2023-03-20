@@ -17,7 +17,7 @@ pipeline {
                 sh 'npm install wrangler'
                 withCredentials([string(credentialsId: '1ce86dad-1224-4efe-b29e-7b2e6191bf9b', variable: 'CLOUDFLARE_API_TOKEN')]) {
                     sh 'CLOUDFLARE_ACCOUNT_ID=073409c1e68d65ff785a7d0056db2c17 \
-                        npx wrangler pages publish build \
+                        npx wrangler pages publish dist \
                             --project-name nootsponge-web \
                             --branch ' + env.GIT_BRANCH + ' \
                             --commit-hash ' + env.GIT_COMMIT + ' \
