@@ -1,101 +1,83 @@
 ---
 import Booper from "../components/Booper.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="/img/ren-headshot-transparent.png"
-    />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#6045CC" />
-    <meta name="description" content="NootSponge" />
-    <title>NootSponge</title>
-  </head>
-  <body>
+<BaseLayout title="NootSponge">
+  <div
+    class="bg-cover bg-[-11rem] md:bg-center min-h-screen text-center text-white"
+    style={{ backgroundImage: "url('/img/dark-city-background.jpg')" }}
+  >
     <div
-      class="bg-cover bg-[-11rem] md:bg-center min-h-screen text-center text-white"
-      style={{ backgroundImage: "url('/img/dark-city-background.jpg')" }}
+      class="w-full md:w-1/3 m-auto pt-20 md:mr-72 flex items-center justify-center flex-col md:float-right"
     >
-      <div
-        class="w-full md:w-1/3 m-auto pt-20 md:mr-72 flex items-center justify-center flex-col md:float-right"
+      <Booper />
+      <span class="text-4xl font-semibold text-[#e7da48]">NootSponge</span>
+      <br />
+      <span class="font-light text-[#e7da48] mt-1"> Software Developer</span>
+      <a
+        href="/about"
+        class="font-light transition-colors text-[#e7da48] hover:text-white underline md:no-underline"
       >
-        <Booper />
-        <span class="text-4xl font-semibold text-[#e7da48]">NootSponge</span>
-        <br />
-        <span class="font-light text-[#e7da48] mt-1"> Software Developer</span>
+        about me
+      </a>
+      <span
+        class="font-light transition-colors text-[#e7da48] hover:text-white underline md:no-underline"
+      >
         <a
-          href="/about"
-          class="font-light transition-colors text-[#e7da48] hover:text-white underline md:no-underline"
+          class="transition-colors hover:text-white"
+          href="mailto:contact@nootsponge.com"
         >
-          about me
+          contact@nootsponge.com
         </a>
-        <span
-          class="font-light transition-colors text-[#e7da48] hover:text-white underline md:no-underline"
+      </span>
+      <div
+        class="w-full flex flex-column justify-center items-center space-x-4 mt-3"
+      >
+        <a href="https://twitter.com/renfloof" target="_blank" rel="noreferrer">
+          <img
+            src="/img/twitter-logo.png"
+            class="w-12 h-auto transition hover:brightness-75"
+            alt="Twitter"
+          />
+        </a>
+        <a
+          href="https://discord.com/users/148680149548793856"
+          target="_blank"
+          rel="noreferrer"
         >
-          <a
-            class="transition-colors hover:text-white"
-            href="mailto:contact@nootsponge.com"
-          >
-            contact@nootsponge.com
-          </a>
-        </span>
-        <div
-          class="w-full flex flex-column justify-center items-center space-x-4 mt-3"
+          <img
+            src="/img/discord-logo.png"
+            class="w-12 h-auto transition hover:brightness-75"
+            alt="Discord"
+          />
+        </a>
+        <a href="https://t.me/nootsponge" target="_blank" rel="noreferrer">
+          <img
+            src="/img/telegram-logo.png"
+            class="w-12 h-auto transition hover:brightness-75"
+            alt="Telegram"
+          />
+        </a>
+        <a
+          href="https://steamcommunity.com/id/nootspongeborb"
+          target="_blank"
+          rel="noreferrer"
         >
-          <a
-            href="https://twitter.com/renfloof"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="/img/twitter-logo.png"
-              class="w-12 h-auto transition hover:brightness-75"
-              alt="Twitter"
-            />
-          </a>
-          <a
-            href="https://discord.com/users/148680149548793856"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="/img/discord-logo.png"
-              class="w-12 h-auto transition hover:brightness-75"
-              alt="Discord"
-            />
-          </a>
-          <a href="https://t.me/nootsponge" target="_blank" rel="noreferrer">
-            <img
-              src="/img/telegram-logo.png"
-              class="w-12 h-auto transition hover:brightness-75"
-              alt="Telegram"
-            />
-          </a>
-          <a
-            href="https://steamcommunity.com/id/nootspongeborb"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="/img/steam-logo.png"
-              class="w-12 h-auto transition hover:brightness-75"
-              alt="Steam"
-            />
-          </a>
-          <a href="https://source.n00t.io" target="_blank" rel="noreferrer">
-            <img
-              src="/img/git-logo.png"
-              class="w-12 h-auto transition hover:brightness-75"
-              alt="Git"
-            />
-          </a>
-        </div>
+          <img
+            src="/img/steam-logo.png"
+            class="w-12 h-auto transition hover:brightness-75"
+            alt="Steam"
+          />
+        </a>
+        <a href="https://source.n00t.io" target="_blank" rel="noreferrer">
+          <img
+            src="/img/git-logo.png"
+            class="w-12 h-auto transition hover:brightness-75"
+            alt="Git"
+          />
+        </a>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</BaseLayout>
