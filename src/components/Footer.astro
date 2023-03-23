@@ -1,0 +1,17 @@
+---
+const year =
+  new Date().getFullYear() == 2023
+    ? 2023
+    : 2023 + "-" + new Date().getFullYear();
+---
+
+<footer
+  class="h-12 w-full mt-8 flex items-center justify-center border-t shadow-xl"
+>
+  <span class="text-opacity-50"
+    >&copy; {year} NootSponge - <a
+      class="text-[#e7da48] hover:text-white transition-colors"
+      href="https://source.n00t.io/nootsponge/nootsponge.com">Source</a
+    ></span
+  >
+</footer>
