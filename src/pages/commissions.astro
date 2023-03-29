@@ -1,0 +1,296 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<style>
+  .content-min-h {
+    min-height: calc(100vh - 12rem);
+  }
+</style>
+
+<BaseLayout title="NootSponge - Commissions">
+  <main
+    class="bg-gradient-to-b from-[#3B2A80] to-[#291e51] text-white w-full flex justify-start items-center flex-col"
+  >
+    <Header /><article
+      class="content-min-h mt-12 w-full flex flex-col items-center"
+    >
+      <div class="text-center flex flex-col items-center">
+        <h1 class="text-4xl font-bold tracking-tight text-[#e7da48] max-w-lg">
+          Everyone deserves a place online to call home.
+        </h1>
+        <p class="mt-6 text-lg leading-8 max-w-xl">
+          Websites can be be a place to express yourself, provide links to your
+          social platforms, or be a place to sell things. I'm making that easy
+          and affordable for everyone.
+        </p>
+      </div>
+      <div class="mt-10 flex items-center justify-center gap-x-6">
+        <a
+          href="#pricing"
+          class="rounded-md bg-[#e7da48] px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-yellow-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-yellow-200"
+          >Get started</a
+        >
+        <a href="#process" class="text-sm font-semibold leading-6 text-white"
+          >Learn more <span aria-hidden="true">→</span></a
+        >
+      </div>
+      <div
+        id="pricing"
+        class="mt-12 rounded-lg bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 w-7/12"
+      >
+        <div class="space-y-4 m-8">
+          <div class="">
+            <p class="font-bold text-[#e7da48]">Pricing</p>
+            <h1 class="text-3xl font-bold tracking-tight">Plans for anyone</h1>
+          </div>
+          <div class="flex flex-row w-full space-x-4">
+            <div
+              class="w-1/3 p-8 rounded-xl bg-slate-800 space-y-5 flex flex-col"
+            >
+              <h3 class="font-semibold">Basic</h3>
+              <p>A simple one-page card for content and social links.</p>
+              <div>
+                <span class="text-5xl font-bold">$25</span>
+                <span class="text-sm font-semibold">USD</span>
+              </div>
+              <ul>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>One static page
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Custom design
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Made to your specifications
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>2-5 day delivery
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                class="block w-full rounded-md bg-[#e7da48] px-3 py-2 text-center text-sm font-semibold text-black shadow-sm hover:bg-yellow-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-yellow-200"
+                >Contact for a quote</a
+              >
+            </div>
+            <div
+              class="w-1/3 p-6 rounded-xl bg-slate-800 space-y-5 flex flex-col"
+            >
+              <h3 class="font-semibold">Premium</h3>
+              <p>
+                Multi-page or multi-section static website for individuals or
+                businesses.
+              </p>
+              <div>
+                <span class="text-5xl font-bold">$50</span>
+                <span class="text-sm font-semibold">USD</span>
+              </div>
+              <ul>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>One or multiple pages
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Custom design
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Made to your specifications
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Can include marketing, content, and/or CTA sections
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>3-5 day delivery
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                class="block w-full rounded-md bg-[#e7da48] px-3 py-2 text-center text-sm font-semibold text-black shadow-sm hover:bg-yellow-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-yellow-200"
+                >Contact for a quote</a
+              >
+            </div>
+            <div
+              class="w-1/3 p-6 rounded-xl bg-slate-800 space-y-5 flex flex-col"
+            >
+              <h3 class="font-semibold">Advanced</h3>
+              <p>
+                Hosted website with multiple pages and server-sided rendering.
+              </p>
+              <div>
+                <span class="text-5xl font-bold">$80+</span>
+                <span class="text-sm font-semibold">USD</span>
+              </div>
+              <ul>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Multiple pages
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Custom design
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Made to your specifications
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>Can include complex forms or conditional logic
+                </li>
+                <li class="flex gap-x-3">
+                  <svg
+                    class="h-6 w-5 flex-none text-[#e7da48]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"></path>
+                  </svg>7+ day delivery (depending on complexity)
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                class="block w-full rounded-md bg-[#e7da48] px-3 py-2 text-center text-sm font-semibold text-black shadow-sm hover:bg-yellow-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-yellow-200"
+                >Contact for a quote</a
+              >
+            </div>
+          </div>
+          <p class="text-slate-600">
+            Does not include domain cost or hosting cost for the Advanced plan.
+          </p>
+        </div>
+      </div>
+    </article><Footer />
+  </main>
+</BaseLayout>
