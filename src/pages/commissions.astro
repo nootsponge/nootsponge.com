@@ -2,6 +2,7 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import PriceCard from "../components/PriceCard.astro";
+import QuoteForm from "../components/QuoteForm.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -16,7 +17,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     class="bg-gradient-to-b from-[#3B2A80] to-[#291e51] text-white w-full flex justify-start items-center flex-col"
   >
     <Header />
-    <article class="content-min-h mt-12 w-full flex flex-col items-center">
+    <article
+      class="content-min-h mt-12 w-full flex flex-col items-center space-y-12"
+    >
       <div class="text-center flex flex-col items-center">
         <h1 class="text-4xl font-bold tracking-tight text-[#e7da48] max-w-lg">
           Everyone deserves a place online to call home.
@@ -39,11 +42,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
       <div
         id="pricing"
-        class="mt-12 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 w-3/4"
+        class="rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 w-3/4"
       >
         <div class="space-y-4 m-8">
           <div class="">
-            <p class="font-bold text-[#e7da48]">Pricing</p>
+            <p class="font-bold text-[#e7da48]">Base Packages</p>
             <h1 class="text-3xl font-bold tracking-tight">
               Affordable for anyone
             </h1>
@@ -58,7 +61,128 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </p>
         </div>
       </div>
+      <div id="process" class="w-1/2 space-y-8">
+        <div>
+          <p class="font-bold text-[#e7da48]">Process</p>
+          <h1 class="text-3xl font-bold tracking-tight">How it works</h1>
+        </div>
+        <div class="flex flex-row justify-between">
+          <div class="max-w-md">
+            <h2 class="text-2xl font-bold tracking-tight">Quote</h2>
+            <p class="leading-6">
+              Submit a quote request with the form below. Make sure to give as
+              much detail as possible, include colors, shapes, ideas, and any
+              reference images. I should get back to you after your quote in
+              24-48 hours.
+            </p>
+          </div>
+          <img
+            src="undraw_receipt.svg"
+            alt="Reciept Icon"
+            class="rounded-3xl p-4 backdrop-brightness-200 float-right shadow-lg shadow-[#3B2A80] border border-slate-700"
+            height="25%"
+            width="25%"
+          />
+        </div>
+        <div class="flex flex-row justify-between">
+          <img
+            src="undraw_real_time_collaboration.svg"
+            alt="Collaboration Icon"
+            class="rounded-3xl p-4 backdrop-brightness-200 float-right shadow-lg shadow-[#3B2A80] border border-slate-700"
+            height="25%"
+            width="25%"
+          />
+          <div class="max-w-lg">
+            <h2 class="text-2xl font-bold tracking-tight">
+              Domain &amp; Pre-Commission
+            </h2>
+            <p class="leading-6">
+              Once I have recieved your commission request, I will contact you
+              via your preferred method to further discuss your commission. The
+              first step will be choosing your domain name and where to register
+              it. After that, we will start discussing design and content.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-row justify-between">
+          <div class="max-w-lg">
+            <h2 class="text-2xl font-bold tracking-tight">Design Phase</h2>
+            <p class="leading-6">
+              During the design phase, I'll make several drafts of your website
+              using Figma. I'll send you a link to the Figma file and you can
+              give me feedback on the designs. Once we have a design that you
+              like, I'll start building and frameworking the website.
+            </p>
+          </div>
+          <img
+            src="undraw_design_feedback.svg"
+            alt="Design Process Icon"
+            class="rounded-3xl p-4 backdrop-brightness-200 float-right shadow-lg shadow-[#3B2A80] border border-slate-700"
+            height="33%"
+            width="33%"
+          />
+        </div>
+        <div class="flex flex-row justify-between">
+          <img
+            src="undraw_web_developer.svg"
+            alt="Developer Icon"
+            class="rounded-3xl p-4 backdrop-brightness-200 float-right shadow-lg shadow-[#3B2A80] border border-slate-700"
+            height="25%"
+            width="25%"
+          />
+          <div class="max-w-lg">
+            <h2 class="text-2xl font-bold tracking-tight">Development Phase</h2>
+            <p class="leading-6">
+              During the development phase, I'll build the website using <a
+                href="https://astro.build"
+                class="text-[#e7da48] underline transition-colors hover:text-white"
+                target="_blank">Astro</a
+              >, <a
+                href="https://tailwindcss.com"
+                class="text-[#e7da48] underline transition-colors hover:text-white"
+                target="_blank">Tailwind CSS</a
+              >, and <a
+                href="https://pages.cloudflare.com/"
+                class="text-[#e7da48] underline transition-colors hover:text-white"
+                target="_blank">Cloudflare Pages</a
+              >. I will send you a link to the development site so you can see
+              the progress as I build it.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-row justify-between">
+          <div class="max-w-lg">
+            <h2 class="text-2xl font-bold tracking-tight">Review</h2>
+            <p class="leading-6">
+              Once the website is finished, I'll send you a link to the live
+              site. You can review the site and make sure everything is working
+              as intended. If you find any bugs or issues, I'll fix them as
+              quickly as possible. This is the step to ensure it is exactly to
+              your liking. Large changes after this point will be subject to
+              additional fees. Read the <a
+                href="#terms"
+                class="text-[#e7da48] underline transition-colors hover:text-white"
+                >Terms of Service</a
+              > for more information.
+            </p>
+          </div>
+          <img
+            src="undraw_code_review.svg"
+            alt="Launch Icon"
+            class="rounded-3xl p-4 backdrop-brightness-200 float-right shadow-lg shadow-[#3B2A80] border border-slate-700"
+            height="25%"
+            width="25%"
+          />
+        </div>
+      </div>
+      <div id="quote" class="w-full flex flex-col items-center">
+        <div class="text-center mb-6">
+          <p class="font-bold text-[#e7da48]">Pricing</p>
+          <h1 class="text-3xl font-bold tracking-tight">Request a Quote</h1>
+        </div>
+        <QuoteForm />
+      </div>
+      <Footer />
     </article>
-    <Footer />
   </main>
 </BaseLayout>

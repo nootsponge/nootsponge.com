@@ -1,0 +1,97 @@
+---
+---
+
+<script></script>
+
+<div
+  class="w-3/5 bg-gradient-to-tl from-[#543ea8] border border-slate-700 p-6 rounded-lg flex flex-col items-center space-y-4"
+>
+  <div class="text-center flex flex-row items-center">
+    <div
+      id="step-1-circle"
+      class="w-12 h-12 border border-slate-500 rounded-full flex items-center bg-slate-500"
+    >
+      <p id="step-1-number" class="font-semibold w-full">1</p>
+    </div>
+    <div class="h-[1px] w-12 border border-slate-500"></div>
+    <div
+      id="step-2-circle"
+      class="w-12 h-12 border border-slate-500 rounded-full flex items-center transition-colors"
+    >
+      <p id="step-2-number" class="font-semibold w-full">2</p>
+    </div>
+    <div class="h-[1px] w-12 border border-slate-500"></div>
+    <div
+      id="step-3-circle"
+      class="w-12 h-12 border border-slate-500 rounded-full flex items-center transition-colors"
+    >
+      <p id="step-3-number" class="font-semibold w-full">3</p>
+    </div>
+  </div>
+  <div>
+    <p id="step-1-text" class="font-semibold">Package Selection</p>
+    <p id="step-2-text" class="text-slate-500 font-semibold hidden">
+      Project Information
+    </p>
+    <p id="step-3-text" class="text-slate-500 font-semibold hidden">
+      Contact Information
+    </p>
+  </div>
+  <div class="w-full">
+    <form class="flex flex-col items-center">
+      <div id="step-1" class="flex flex-col items-start w-4/5 space-y-4">
+        <div class="flex flex-col space-y-2">
+          <label for="package" class="font-semibold"
+            >Choose a base package</label
+          >
+          <select
+            id="package"
+            name="package"
+            class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+          >
+            <option value="basic">Basic</option>
+            <option value="standard">Standard</option>
+            <option value="premium">Premium</option>
+          </select>
+        </div>
+        <div class="flex flex-col space-y-2">
+          <p class="font-semibold">Additions</p>
+          <div class="flex flex-row space-x-4">
+            <div class="flex flex-col space-y-2">
+              <input
+                type="checkbox"
+                id="addition-1"
+                name="addition-1"
+                class="border border-slate-500 rounded-lg p-2"
+              />
+              <label for="addition-1">Addition 1</label>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <input
+                type="checkbox"
+                id="addition-2"
+                name="addition-2"
+                class="border border-slate-500 rounded-lg p-2"
+              />
+              <label for="addition-2">Addition 2</label>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <input
+                type="checkbox"
+                id="addition-3"
+                name="addition-3"
+                class="border border-slate-500 rounded-lg p-2"
+              />
+              <label for="addition-3">Addition 3</label>
+            </div>
+          </div>
+        </div>
+        <div id="step-2" class="flex-col space-y-4 hidden">
+          <div class="flex flex-row space-x-4">
+            <div class="flex flex-col space-y-2"></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
