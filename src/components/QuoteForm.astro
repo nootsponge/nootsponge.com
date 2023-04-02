@@ -1,17 +1,334 @@
 ---
+import FeatureList from "./FeatureList.astro";
 ---
 
-<script></script>
+<script>
+  let tier: string = "basic";
+
+  const packageSelect: HTMLElement = document.getElementById("package")!;
+  const basicFeatures: HTMLElement = document.getElementById("basic-features")!;
+  const standardFeatures: HTMLElement =
+    document.getElementById("standard-features")!;
+  const premiumFeatures: HTMLElement =
+    document.getElementById("premium-features")!;
+
+  const basicExtras: HTMLElement = document.getElementById("basic-extras")!;
+  const standardExtras: HTMLElement =
+    document.getElementById("standard-extras")!;
+  const premiumExtras: HTMLElement = document.getElementById("premium-extras")!;
+
+  packageSelect.addEventListener("change", (e) => {
+    const selectedPackage = (e.target as HTMLSelectElement).value;
+
+    tier = selectedPackage;
+
+    if (selectedPackage === "basic") {
+      basicFeatures.classList.remove("hidden");
+      standardFeatures.classList.add("hidden");
+      premiumFeatures.classList.add("hidden");
+
+      basicExtras.classList.remove("hidden");
+      standardExtras.classList.add("hidden");
+      premiumExtras.classList.add("hidden");
+    } else if (selectedPackage === "standard") {
+      basicFeatures.classList.add("hidden");
+      standardFeatures.classList.remove("hidden");
+      premiumFeatures.classList.add("hidden");
+
+      basicExtras.classList.add("hidden");
+      standardExtras.classList.remove("hidden");
+      premiumExtras.classList.add("hidden");
+    } else if (selectedPackage === "premium") {
+      basicFeatures.classList.add("hidden");
+      standardFeatures.classList.add("hidden");
+      premiumFeatures.classList.remove("hidden");
+
+      basicExtras.classList.add("hidden");
+      standardExtras.classList.add("hidden");
+      premiumExtras.classList.remove("hidden");
+    }
+
+    calcSubtotal();
+  });
+
+  const basicExtra1: HTMLInputElement = document.getElementById(
+    "basic-extra-1"
+  )! as HTMLInputElement;
+  const basicExtra2: HTMLInputElement = document.getElementById(
+    "basic-extra-2"
+  )! as HTMLInputElement;
+
+  basicExtra1.addEventListener("change", (e) => {
+    calcSubtotal();
+  });
+
+  basicExtra2.addEventListener("change", (e) => {
+    calcSubtotal();
+  });
+
+  const standardExtra1: HTMLInputElement = document.getElementById(
+    "standard-extra-1"
+  )! as HTMLInputElement;
+  const standardExtra2: HTMLInputElement = document.getElementById(
+    "standard-extra-2"
+  )! as HTMLInputElement;
+  const standardExtra3: HTMLInputElement = document.getElementById(
+    "standard-extra-3"
+  )! as HTMLInputElement;
+
+  standardExtra1.addEventListener("change", (e) => {
+    calcSubtotal();
+  });
+
+  standardExtra2.addEventListener("change", (e) => {
+    calcSubtotal();
+  });
+
+  standardExtra3.addEventListener("change", (e) => {
+    calcSubtotal();
+  });
+
+  const premiumExtra1: HTMLInputElement = document.getElementById(
+    "premium-extra-1"
+  )! as HTMLInputElement;
+  const premiumExtra2: HTMLInputElement = document.getElementById(
+    "premium-extra-2"
+  )! as HTMLInputElement;
+  const premiumExtra3: HTMLInputElement = document.getElementById(
+    "premium-extra-3"
+  )! as HTMLInputElement;
+
+  premiumExtra1.addEventListener("change", (e) => {
+    calcSubtotal();
+  });
+
+  premiumExtra2.addEventListener("change", (e) => {
+    calcSubtotal();
+  });
+
+  premiumExtra3.addEventListener("change", (e) => {
+    calcSubtotal();
+  });
+
+  const quoteFormContainer: HTMLElement = document.getElementById(
+    "quote-form-container"
+  )!;
+
+  let currentPage: number = 1;
+
+  const nextButton: HTMLButtonElement = document.getElementById(
+    "next-button"
+  )! as HTMLButtonElement;
+  const prevButton: HTMLButtonElement = document.getElementById(
+    "prev-button"
+  )! as HTMLButtonElement;
+  const submitButton: HTMLButtonElement = document.getElementById(
+    "submit-button"
+  )! as HTMLButtonElement;
+
+  nextButton.addEventListener("click", () => {
+    if (currentPage === 1) {
+      switchPage(2, 1);
+      currentPage = 2;
+
+      prevButton.classList.remove("bg-slate-500");
+      prevButton.classList.add("bg-[#e7da48]");
+      prevButton.disabled = false;
+    } else if (currentPage === 2) {
+      switchPage(3, 2);
+      currentPage = 3;
+
+      nextButton.classList.add("hidden");
+      submitButton.classList.remove("hidden");
+    }
+  });
+
+  prevButton.addEventListener("click", () => {
+    if (currentPage === 2) {
+      switchPage(1, 2);
+      currentPage = 1;
+
+      prevButton.classList.add("bg-slate-500");
+      prevButton.classList.remove("bg-[#e7da48]");
+      prevButton.disabled = true;
+    } else if (currentPage === 3) {
+      switchPage(2, 3);
+      currentPage = 2;
+
+      nextButton.classList.remove("hidden");
+      submitButton.classList.add("hidden");
+    }
+  });
+
+  function calcSubtotal() {
+    const subtotalElement: HTMLElement = document.getElementById("subtotal")!;
+
+    const items: HTMLElement = document.getElementById(
+      "items"
+    )! as HTMLUListElement;
+
+    items.innerHTML = "";
+
+    let subtotal: number = 0;
+
+    if (tier === "basic") {
+      subtotal += 25;
+
+      const item: HTMLElement = document.createElement("li");
+      item.innerHTML = "<code>Basic Package - $25.00";
+      items.appendChild(item);
+
+      if (basicExtra1.checked) {
+        subtotal += 3;
+
+        const item: HTMLElement = document.createElement("li");
+        item.innerHTML = "<code>Animated Elements - $3.00</code>";
+        items.appendChild(item);
+      }
+
+      if (basicExtra2.checked) {
+        subtotal += 5;
+
+        const item: HTMLElement = document.createElement("li");
+        item.innerHTML = "<code>Advanced Theme - $5.00</code>";
+        items.appendChild(item);
+      }
+    } else if (tier === "standard") {
+      subtotal += 50;
+
+      const item: HTMLElement = document.createElement("li");
+      item.innerHTML = "<code>Standard Package - $50.00";
+      items.appendChild(item);
+
+      if (standardExtra1.checked) {
+        subtotal += 3;
+
+        const item: HTMLElement = document.createElement("li");
+        item.innerHTML = "<code>Animated Elements - $3.00</code>";
+        items.appendChild(item);
+      }
+
+      if (standardExtra2.checked) {
+        subtotal += 5;
+
+        const item: HTMLElement = document.createElement("li");
+        item.innerHTML = "<code>Advanced Theme - $5.00</code>";
+        items.appendChild(item);
+      }
+
+      if (standardExtra3.value !== "") {
+        let amount: number = parseInt(standardExtra3.value);
+
+        if (amount > 0) {
+          let totalAdditional = amount * 5;
+
+          subtotal += totalAdditional;
+
+          const item: HTMLElement = document.createElement("li");
+          item.innerHTML = `<code>Custom Pages - $${totalAdditional}.00</code>`;
+          items.appendChild(item);
+        }
+      }
+    } else if (tier === "premium") {
+      subtotal += 80;
+
+      const item: HTMLElement = document.createElement("li");
+      item.innerHTML = "<code>Premium Package - $80.00";
+      items.appendChild(item);
+
+      if (premiumExtra1.checked) {
+        subtotal += 3;
+
+        const item: HTMLElement = document.createElement("li");
+        item.innerHTML = "<code>Animated Elements - $3.00</code>";
+        items.appendChild(item);
+      }
+
+      if (premiumExtra2.checked) {
+        subtotal += 5;
+
+        const item: HTMLElement = document.createElement("li");
+        item.innerHTML = "<code>Advanced Theme - $5.00</code>";
+        items.appendChild(item);
+      }
+
+      if (premiumExtra3.value !== "") {
+        let amount: number = parseInt(premiumExtra3.value);
+
+        if (amount > 0) {
+          let totalAdditional = amount * 5;
+
+          subtotal += totalAdditional;
+
+          const item: HTMLElement = document.createElement("li");
+          item.innerHTML = `<code>Custom Pages - $${totalAdditional}.00</code>`;
+          items.appendChild(item);
+        }
+      }
+    }
+
+    subtotalElement.innerHTML = `$${subtotal}.00`;
+  }
+
+  function switchPage(toPage: number, fromPage: number) {
+    const toStep: HTMLElement = document.getElementById(`step-${toPage}`)!;
+    const toStepText: HTMLElement = document.getElementById(
+      `step-${toPage}-text`
+    )!;
+    const toStepCircle: HTMLElement = document.getElementById(
+      `step-${toPage}-circle`
+    )!;
+    const toStepNumber: HTMLElement = document.getElementById(
+      `step-${toPage}-number`
+    )!;
+
+    const fromStep: HTMLElement = document.getElementById(`step-${fromPage}`)!;
+    const fromStepText: HTMLElement = document.getElementById(
+      `step-${fromPage}-text`
+    )!;
+    const fromStepCircle: HTMLElement = document.getElementById(
+      `step-${fromPage}-circle`
+    )!;
+    const fromStepNumber: HTMLElement = document.getElementById(
+      `step-${fromPage}-number`
+    )!;
+
+    fromStep.classList.add("opacity-0");
+
+    setTimeout(() => {
+      fromStep.classList.add("hidden");
+      fromStep.classList.remove("flex");
+      toStep.classList.remove("hidden");
+      toStep.classList.add("flex");
+    }, 100);
+
+    setTimeout(() => {
+      toStep.classList.remove("opacity-0");
+
+      quoteFormContainer.scrollIntoView();
+    }, 200);
+
+    fromStepText.classList.add("hidden");
+    toStepText.classList.remove("hidden");
+
+    fromStepCircle.classList.remove("bg-[#e7da48]");
+    toStepCircle.classList.add("bg-[#e7da48]");
+
+    fromStepNumber.classList.remove("text-black");
+    toStepNumber.classList.add("text-black");
+  }
+</script>
 
 <div
-  class="w-3/5 bg-gradient-to-tl from-[#543ea8] border border-slate-700 p-6 rounded-lg flex flex-col items-center space-y-4"
+  id="quote-form-container"
+  class="w-3/5 bg-gradient-to-tl from-[#543ea8] border border-slate-700 p-6 rounded-lg flex flex-col items-center space-y-4 overflow-hidden"
 >
   <div class="text-center flex flex-row items-center">
     <div
       id="step-1-circle"
-      class="w-12 h-12 border border-slate-500 rounded-full flex items-center bg-slate-500"
+      class="w-12 h-12 border border-slate-500 rounded-full flex items-center bg-[#e7da48] transition-colors"
     >
-      <p id="step-1-number" class="font-semibold w-full">1</p>
+      <p id="step-1-number" class="font-semibold w-full text-black">1</p>
     </div>
     <div class="h-[1px] w-12 border border-slate-500"></div>
     <div
@@ -30,66 +347,316 @@
   </div>
   <div>
     <p id="step-1-text" class="font-semibold">Package Selection</p>
-    <p id="step-2-text" class="text-slate-500 font-semibold hidden">
-      Project Information
-    </p>
-    <p id="step-3-text" class="text-slate-500 font-semibold hidden">
-      Contact Information
-    </p>
+    <p id="step-2-text" class="font-semibold hidden">Project Information</p>
+    <p id="step-3-text" class="font-semibold hidden">Contact Information</p>
   </div>
   <div class="w-full">
-    <form class="flex flex-col items-center">
-      <div id="step-1" class="flex flex-col items-start w-4/5 space-y-4">
-        <div class="flex flex-col space-y-2">
-          <label for="package" class="font-semibold"
-            >Choose a base package</label
-          >
-          <select
-            id="package"
-            name="package"
-            class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
-          >
-            <option value="basic">Basic</option>
-            <option value="standard">Standard</option>
-            <option value="premium">Premium</option>
-          </select>
-        </div>
-        <div class="flex flex-col space-y-2">
-          <p class="font-semibold">Additions</p>
-          <div class="flex flex-row space-x-4">
+    <form class="space-y-6 flex flex-col items-center">
+      <div
+        id="step-1"
+        class="w-full flex flex-col items-center transition-opacity"
+      >
+        <div class="flex flex-row justify-between w-4/5">
+          <div class="space-y-4">
             <div class="flex flex-col space-y-2">
-              <input
-                type="checkbox"
-                id="addition-1"
-                name="addition-1"
-                class="border border-slate-500 rounded-lg p-2"
-              />
-              <label for="addition-1">Addition 1</label>
+              <label for="package" class="font-semibold"
+                >Choose a base package</label
+              >
+              <select
+                id="package"
+                name="package"
+                class="border border-slate-500 rounded-lg p-2 w-48 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+              >
+                <option value="basic" selected>Basic</option>
+                <option value="standard">Standard</option>
+                <option value="premium">Premium</option>
+              </select>
             </div>
             <div class="flex flex-col space-y-2">
-              <input
-                type="checkbox"
-                id="addition-2"
-                name="addition-2"
-                class="border border-slate-500 rounded-lg p-2"
-              />
-              <label for="addition-2">Addition 2</label>
+              <p class="font-semibold">Features</p>
+              <div class="flex flex-col">
+                <ul id="basic-features">
+                  <FeatureList tier="Basic" />
+                </ul>
+                <ul id="standard-features" class="hidden">
+                  <FeatureList tier="Standard" />
+                </ul>
+                <ul id="premium-features" class="hidden">
+                  <FeatureList tier="Premium" />
+                </ul>
+              </div>
             </div>
-            <div class="flex flex-col space-y-2">
-              <input
-                type="checkbox"
-                id="addition-3"
-                name="addition-3"
-                class="border border-slate-500 rounded-lg p-2"
-              />
-              <label for="addition-3">Addition 3</label>
+          </div>
+
+          <div class="w-1/2">
+            <p class="font-semibold">Extras &amp; Additions</p>
+            <div id="basic-extras" class="mt-1 flex flex-col space-y-2">
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="basic-extra-1"
+                  name="basic-extra-1"
+                  type="checkbox"
+                  class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
+                />
+                <label for="extra-1" class="font-semibold"
+                  >Animated Elements (Fade/Transform In) - $3.00</label
+                >
+              </div>
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="basic-extra-2"
+                  name="basic-extra-2"
+                  type="checkbox"
+                  class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
+                />
+                <label for="extra-2" class="font-semibold"
+                  >Advanced Theme - $5.00</label
+                >
+              </div>
+            </div>
+
+            <div id="standard-extras" class="mt-1 flex-col space-y-2 hidden">
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="standard-extra-1"
+                  name="standard-extra-1"
+                  type="checkbox"
+                  class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
+                />
+                <label for="extra-1" class="font-semibold"
+                  >Animated Elements (Fade/Transform In) - $3.00</label
+                >
+              </div>
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="standard-extra-2"
+                  name="standard-extra-2"
+                  type="checkbox"
+                  class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
+                />
+                <label for="extra-2" class="font-semibold"
+                  >Advanced Theme - $5.00</label
+                >
+              </div>
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="standard-extra-3"
+                  name="standard-extra-3"
+                  type="number"
+                  class="border border-slate-500 rounded-lg w-24 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+                />
+                <label for="extra-3" class="font-semibold"
+                  >Additional Pages - $5.00/ea</label
+                >
+              </div>
+            </div>
+
+            <div id="premium-extras" class="mt-1 flex-col space-y-2 hidden">
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="premium-extra-1"
+                  name="premium-extra-1"
+                  type="checkbox"
+                  class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
+                />
+                <label for="extra-1" class="font-semibold"
+                  >Animated Elements (Fade/Transform In) - $3.00</label
+                >
+              </div>
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="premium-extra-2"
+                  name="premium-extra-2"
+                  type="checkbox"
+                  class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
+                />
+                <label for="extra-2" class="font-semibold"
+                  >Advanced Theme - $5.00</label
+                >
+              </div>
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="premium-extra-3"
+                  name="premium-extra-3"
+                  type="number"
+                  class="border border-slate-500 rounded-lg w-24 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+                />
+                <label for="extra-3" class="font-semibold"
+                  >Additional Pages - $5.00/ea</label
+                >
+              </div>
             </div>
           </div>
         </div>
-        <div id="step-2" class="flex-col space-y-4 hidden">
-          <div class="flex flex-row space-x-4">
-            <div class="flex flex-col space-y-2"></div>
+      </div>
+
+      <div
+        id="step-2"
+        class="w-full flex-col items-center transition-opacity opacity-0 hidden"
+      >
+        <div class="flex flex-row justify-between w-4/5 space-x-4">
+          <div class="space-y-4 w-1/2">
+            <div class="flex flex-col space-y-2">
+              <label for="project-name" class="font-semibold">Domain Name</label
+              >
+              <input
+                id="domain-name"
+                name="domain-name"
+                type="text"
+                class="border border-slate-500 rounded-lg w-64 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+              />
+            </div>
+            <div class="flex flex-col space-y-2">
+              <label for="project-description" class="font-semibold"
+                >Project Description</label
+              >
+              <span
+                >Please provide as much detail as possible including references,
+                colors, shape ideas, or other theme ideas.</span
+              >
+              <textarea
+                id="project-description"
+                name="project-description"
+                class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+              ></textarea>
+            </div>
           </div>
+          <div class="w-1/2">
+            <div class="flex flex-col space-y-2">
+              <label for="project-type" class="font-semibold"
+                >Are you a business or individual?</label
+              >
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="business"
+                  name="project-type"
+                  type="radio"
+                  class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
+                />
+                <label for="business" class="font-semibold">Business</label>
+              </div>
+              <div class="flex flex-row items-center space-x-2">
+                <input
+                  id="individual"
+                  name="project-type"
+                  type="radio"
+                  class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
+                />
+                <label for="individual" class="font-semibold">Individual</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="step-3"
+        class="w-full flex-col items-center transition-opacity opacity-0 hidden"
+      >
+        <div class="flex flex-row justify-between w-4/5 space-x-4">
+          <div class="space-y-4 w-1/2">
+            <div class="flex flex-col space-y-2">
+              <label for="first-name" class="font-semibold"
+                >Preferred Name</label
+              >
+              <input
+                id="name"
+                name="name"
+                type="text"
+                class="border border-slate-500 rounded-lg w-64 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+              />
+            </div>
+            <div class="flex flex-col space-y-2">
+              <label for="pronouns" class="font-semibold">Pronouns</label>
+              <input
+                id="pronouns"
+                name="pronouns"
+                type="text"
+                class="border border-slate-500 rounded-lg w-32 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+              />
+            </div>
+            <div class="flex flex-col space-y-2">
+              <label for="email" class="font-semibold">Email</label>
+              <p>Used for fallback contact if DM does not work.</p>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                class="border border-slate-500 rounded-lg w-64 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+              />
+            </div>
+          </div>
+          <div class="space-y-4 w-1/2">
+            <div class="flex flex-col space-y-2">
+              <label for="preferred-contact" class="font-semibold"
+                >Preferred Contact Method</label
+              >
+              <select
+                id="preferred-contact"
+                name="preferred-contact"
+                class="border border-slate-500 rounded-lg w-64 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+              >
+                <option value="telegram" selected>Telegram</option>
+                <option value="twitter">Twitter</option>
+                <option value="discord">Discord</option>
+                <option value="email">Email</option>
+              </select>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <label for="preferred-contact-username" class="font-semibold"
+                >Preferred Contact Username</label
+              >
+              <input
+                id="preferred-contact-username"
+                name="preferred-contact-username"
+                type="text"
+                class="border border-slate-500 rounded-lg w-52 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-4/5 h-[1px] bg-slate-500"></div>
+
+      <div class="w-3/4 text-right">
+        <ul id="items">
+          <li><code>Basic Package - $25.00</code></li>
+        </ul>
+        <p class="text-[#e7da48] mt-3 font-bold">Subtotal</p>
+        <div>
+          <span class="text-3xl font-bold" id="subtotal">$25.00</span>
+          <span class="font-bold">USD</span>
+        </div>
+        <p class="font-light text-slate-300">
+          Does NOT include yearly domain costs.
+        </p>
+      </div>
+
+      <div class="w-full flex flex-col items-center">
+        <div class="space-x-3">
+          <button
+            id="prev-button"
+            type="button"
+            disabled
+            class="w-28 font-semibold transition-colors bg-slate-500 text-[#543ea8] p-2 rounded-lg focus:ring focus:ring-[#785ee2]"
+          >
+            Previous
+          </button>
+          <button
+            id="next-button"
+            type="button"
+            class="w-28 font-semibold bg-[#e7da48] text-[#543ea8] p-2 rounded-lg focus:ring focus:ring-[#785ee2]"
+          >
+            Next
+          </button>
+          <button
+            id="submit-button"
+            type="submit"
+            class="w-28 font-semibold bg-[#e7da48] text-[#543ea8] p-2 rounded-lg focus:ring focus:ring-[#785ee2] hidden"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </form>

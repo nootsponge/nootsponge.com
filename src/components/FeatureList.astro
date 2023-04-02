@@ -1,0 +1,102 @@
+---
+const { tier, short } = Astro.props;
+
+let features: string[] = [];
+
+if (short) {
+  switch (tier) {
+    case "Basic":
+      features = [
+        "One static page",
+        "Perfect for personal use",
+        "Social links",
+        "Custom design",
+        "Made to your specifications",
+        "2-5 day delivery",
+      ];
+      break;
+
+    case "Standard":
+      features = [
+        "Up to 5 pages or sections",
+        "Perfect for personal or business use",
+        "Can include marketing, content, and CTA sections",
+        "Custom design",
+        "Made to your specifications",
+        "3-5 day delivery",
+      ];
+      break;
+
+    case "Premium":
+      features = [
+        "Multiple pages",
+        "Perfect for business use",
+        "Can include marketing, content, and CTA sections",
+        "Can include complex forms and conditional logic",
+        "Custom design",
+        "Made to your specifications",
+        "7+ day delivery (depending on complexity)",
+      ];
+      break;
+
+    default:
+      break;
+  }
+} else {
+  switch (tier) {
+    case "Basic":
+      features = [
+        "One page",
+        "Personal use",
+        "Social links",
+        "Custom design",
+        "2-5 day delivery",
+      ];
+      break;
+
+    case "Standard":
+      features = [
+        "Up to 5 pages or sections",
+        "Personal or business use",
+        "Marketing, content, and CTA sections",
+        "Custom design",
+        "3-5 day delivery",
+      ];
+      break;
+
+    case "Premium":
+      features = [
+        "Multiple pages (up to 10 custom)",
+        "Business use",
+        "Marketing, content, and CTA sections",
+        "Complex forms and conditional logic",
+        "Custom design",
+        "7+ day delivery (depending on complexity)",
+      ];
+      break;
+
+    default:
+      break;
+  }
+}
+---
+
+{
+  features?.map((feature) => (
+    <li class="flex gap-x-3">
+      <svg
+        class="h-6 w-5 flex-none text-[#e7da48]"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      {feature}
+    </li>
+  ))
+}
