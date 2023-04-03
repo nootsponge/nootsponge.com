@@ -27,7 +27,3 @@ Lore in pogress.
 ## Reference Sheet
 
 ![](/img/ren-ref-sheet-sfw.png)
-
-## NSFW
-
-I'm weird. Look [here](/nsfw) for some of the (18+) weirdness!
