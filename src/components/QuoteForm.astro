@@ -2,7 +2,12 @@
 import FeatureList from "./FeatureList.astro";
 ---
 
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"
+></script>
+
 <script>
+  import axios from "axios";
+
   let tier: string = "basic";
 
   const packageSelect: HTMLElement = document.getElementById("package")!;
@@ -126,6 +131,10 @@ import FeatureList from "./FeatureList.astro";
     "submit-button"
   )! as HTMLButtonElement;
 
+  const form: HTMLFormElement = document.getElementById(
+    "quote-form"
+  )! as HTMLFormElement;
+
   nextButton.addEventListener("click", () => {
     if (currentPage === 1) {
       switchPage(2, 1);
@@ -135,6 +144,23 @@ import FeatureList from "./FeatureList.astro";
       prevButton.classList.add("bg-[#e7da48]");
       prevButton.disabled = false;
     } else if (currentPage === 2) {
+      const domainName: HTMLInputElement = document.getElementById(
+        "domain-name"
+      )! as HTMLInputElement;
+      const projectDesc: HTMLTextAreaElement = document.getElementById(
+        "project-description"
+      )! as HTMLTextAreaElement;
+
+      if (!domainName.checkValidity()) {
+        domainName.reportValidity();
+        return;
+      }
+
+      if (!projectDesc.checkValidity()) {
+        projectDesc.reportValidity();
+        return;
+      }
+
       switchPage(3, 2);
       currentPage = 3;
 
@@ -160,6 +186,67 @@ import FeatureList from "./FeatureList.astro";
     }
   });
 
+  submitButton.addEventListener("click", () => {
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.classList.add("cursor-not-allowed", "opacity-50");
+    prevButton.disabled = true;
+    prevButton.classList.add("cursor-not-allowed", "opacity-50");
+
+    const step3: HTMLElement = document.getElementById("step-3")!;
+    step3.classList.add("hidden");
+
+    const loadingDiv: HTMLElement = document.getElementById("loading")!;
+    loadingDiv.classList.remove("hidden");
+    loadingDiv.classList.add("flex");
+
+    const formData = new FormData(form);
+
+    interface FormResponse {
+      success?: boolean;
+      message?: string;
+    }
+
+    axios.post("/commissions/quoteRequest", formData).then((res) => {
+      const data: FormResponse = res.data;
+
+      if (res.status === 200 && data.success) {
+        quoteFormContainer.innerHTML = `
+          <div class="text-center">
+            <h2 class="text-3xl font-bold text-white">Thank you!</h2>
+            <p class="mt-3 text-xl text-white max-w-xl">Your quote request has been sent. I will get back to you within 24 hours. Feel free to contact me if you don't hear anything from me!</p>
+            <p class="mt-3 text-white">Please review my <a href="#terms" class="text-[#e7da48] underline hover:text-white transition-colors">Terms of Service</a> while waiting for me to get back to you.</p>
+          </div>
+        `;
+
+        quoteFormContainer.scrollIntoView();
+      } else {
+        const errorDiv: HTMLElement = document.getElementById("error")!;
+
+        loadingDiv.classList.add("hidden");
+        errorDiv.classList.remove("hidden");
+
+        quoteFormContainer.scrollIntoView();
+
+        setTimeout(() => {
+          step3.classList.remove("hidden");
+          errorDiv.classList.add("hidden");
+
+          submitButton.disabled = false;
+          submitButton.classList.remove("cursor-not-allowed", "opacity-50");
+          prevButton.disabled = false;
+          prevButton.classList.remove("cursor-not-allowed", "opacity-50");
+
+          quoteFormContainer.scrollIntoView();
+        }, 3000);
+      }
+    });
+  });
+
   function calcSubtotal() {
     const subtotalElement: HTMLElement = document.getElementById("subtotal")!;
 
@@ -171,7 +258,7 @@ import FeatureList from "./FeatureList.astro";
 
     let subtotal: number = 0;
 
-    if (tier === "basic") {
+    if (tier === "Basic") {
       subtotal += 25;
 
       const item: HTMLElement = document.createElement("li");
@@ -193,7 +280,7 @@ import FeatureList from "./FeatureList.astro";
         item.innerHTML = "<code>Advanced Theme - $5.00</code>";
         items.appendChild(item);
       }
-    } else if (tier === "standard") {
+    } else if (tier === "Standard") {
       subtotal += 50;
 
       const item: HTMLElement = document.createElement("li");
@@ -229,7 +316,7 @@ import FeatureList from "./FeatureList.astro";
           items.appendChild(item);
         }
       }
-    } else if (tier === "premium") {
+    } else if (tier === "Premium") {
       subtotal += 80;
 
       const item: HTMLElement = document.createElement("li");
@@ -351,7 +438,7 @@ import FeatureList from "./FeatureList.astro";
     <p id="step-3-text" class="font-semibold hidden">Contact Information</p>
   </div>
   <div class="w-full">
-    <form class="space-y-6 flex flex-col items-center">
+    <form id="quote-form" class="space-y-6 flex flex-col items-center">
       <div
         id="step-1"
         class="w-full flex flex-col items-center transition-opacity"
@@ -367,9 +454,9 @@ import FeatureList from "./FeatureList.astro";
                 name="package"
                 class="border border-slate-500 rounded-lg p-2 w-48 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
               >
-                <option value="basic" selected>Basic</option>
-                <option value="standard">Standard</option>
-                <option value="premium">Premium</option>
+                <option value="Basic" selected>Basic</option>
+                <option value="Standard">Standard</option>
+                <option value="Premium">Premium</option>
               </select>
             </div>
             <div class="flex flex-col space-y-2">
@@ -497,12 +584,13 @@ import FeatureList from "./FeatureList.astro";
         <div class="flex flex-row justify-between w-4/5 space-x-4">
           <div class="space-y-4 w-1/2">
             <div class="flex flex-col space-y-2">
-              <label for="project-name" class="font-semibold">Domain Name</label
-              >
+              <label for="domain-name" class="font-semibold">Domain Name</label>
               <input
                 id="domain-name"
                 name="domain-name"
                 type="text"
+                required
+                minlength="3"
                 class="border border-slate-500 rounded-lg w-64 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
               />
             </div>
@@ -517,6 +605,8 @@ import FeatureList from "./FeatureList.astro";
               <textarea
                 id="project-description"
                 name="project-description"
+                required
+                minlength="12"
                 class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
               ></textarea>
             </div>
@@ -530,6 +620,7 @@ import FeatureList from "./FeatureList.astro";
                 <input
                   id="business"
                   name="project-type"
+                  value="Business"
                   type="radio"
                   class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
                 />
@@ -539,7 +630,9 @@ import FeatureList from "./FeatureList.astro";
                 <input
                   id="individual"
                   name="project-type"
+                  value="Individual"
                   type="radio"
+                  checked
                   class="border border-slate-500 rounded-lg p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48] checked:bg-[#543ea8] checked:hover:bg-[#543ea8] checked:focus:bg-[#543ea8]"
                 />
                 <label for="individual" class="font-semibold">Individual</label>
@@ -563,6 +656,8 @@ import FeatureList from "./FeatureList.astro";
                 id="name"
                 name="name"
                 type="text"
+                required
+                minlength="1"
                 class="border border-slate-500 rounded-lg w-64 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
               />
             </div>
@@ -572,6 +667,8 @@ import FeatureList from "./FeatureList.astro";
                 id="pronouns"
                 name="pronouns"
                 type="text"
+                required
+                minlength="1"
                 class="border border-slate-500 rounded-lg w-32 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
               />
             </div>
@@ -582,6 +679,8 @@ import FeatureList from "./FeatureList.astro";
                 id="email"
                 name="email"
                 type="email"
+                required
+                minlength="4"
                 class="border border-slate-500 rounded-lg w-64 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
               />
             </div>
@@ -596,10 +695,10 @@ import FeatureList from "./FeatureList.astro";
                 name="preferred-contact"
                 class="border border-slate-500 rounded-lg w-64 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
               >
-                <option value="telegram" selected>Telegram</option>
-                <option value="twitter">Twitter</option>
-                <option value="discord">Discord</option>
-                <option value="email">Email</option>
+                <option value="Telegram" selected>Telegram</option>
+                <option value="Twitter">Twitter</option>
+                <option value="Discord">Discord</option>
+                <option value="Email">Email</option>
               </select>
             </div>
             <div class="flex flex-col space-y-2">
@@ -610,10 +709,45 @@ import FeatureList from "./FeatureList.astro";
                 id="preferred-contact-username"
                 name="preferred-contact-username"
                 type="text"
+                required
+                minlength="3"
                 class="border border-slate-500 rounded-lg w-52 p-2 bg-[#543ea8] focus:ring focus:ring-[#e7da48]"
               />
             </div>
           </div>
+        </div>
+      </div>
+
+      <div id="loading" class="hidden flex-row items-center justify-center">
+        <svg
+          class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+
+        <span class="text-white">Processing...</span>
+      </div>
+
+      <div id="error" class="hidden">
+        <div class="text-center">
+          <h2 class="text-3xl font-bold text-white">Oops!</h2>
+          <p class="mt-3 text-xl text-white">
+            Something went wrong. Please try again.
+          </p>
         </div>
       </div>
 
@@ -652,7 +786,7 @@ import FeatureList from "./FeatureList.astro";
           </button>
           <button
             id="submit-button"
-            type="submit"
+            type="button"
             class="w-28 font-semibold bg-[#e7da48] text-[#543ea8] p-2 rounded-lg focus:ring focus:ring-[#785ee2] hidden"
           >
             Submit
