@@ -211,11 +211,12 @@ import FeatureList from "./FeatureList.astro";
       message?: string;
     }
 
-    axios.post("/commissions/quoteRequest", formData).then((res) => {
-      const data: FormResponse = res.data;
+    axios.post("/commissions/quoteRequest", formData).then(
+      (res) => {
+        const data: FormResponse = res.data;
 
-      if (res.status === 200 && data.success) {
-        quoteFormContainer.innerHTML = `
+        if (res.status === 200 && data.success) {
+          quoteFormContainer.innerHTML = `
           <div class="text-center">
             <h2 class="text-3xl font-bold text-white">Thank you!</h2>
             <p class="mt-3 text-xl text-white max-w-xl">Your quote request has been sent. I will get back to you within 24 hours. Feel free to contact me if you don't hear anything from me!</p>
@@ -223,8 +224,29 @@ import FeatureList from "./FeatureList.astro";
           </div>
         `;
 
-        quoteFormContainer.scrollIntoView();
-      } else {
+          quoteFormContainer.scrollIntoView();
+        } else {
+          const errorDiv: HTMLElement = document.getElementById("error")!;
+
+          loadingDiv.classList.add("hidden");
+          errorDiv.classList.remove("hidden");
+
+          quoteFormContainer.scrollIntoView();
+
+          setTimeout(() => {
+            step3.classList.remove("hidden");
+            errorDiv.classList.add("hidden");
+
+            submitButton.disabled = false;
+            submitButton.classList.remove("cursor-not-allowed", "opacity-50");
+            prevButton.disabled = false;
+            prevButton.classList.remove("cursor-not-allowed", "opacity-50");
+
+            quoteFormContainer.scrollIntoView();
+          }, 3000);
+        }
+      },
+      (err) => {
         const errorDiv: HTMLElement = document.getElementById("error")!;
 
         loadingDiv.classList.add("hidden");
@@ -244,7 +266,7 @@ import FeatureList from "./FeatureList.astro";
           quoteFormContainer.scrollIntoView();
         }, 3000);
       }
-    });
+    );
   });
 
   function calcSubtotal() {
