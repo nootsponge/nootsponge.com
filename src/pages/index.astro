@@ -3,99 +3,280 @@ import Booper from "../components/Booper.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
+<style lang="sass">
+  // fuck you no margin reeeeeeeeeeeeee
+  h1, p
+    margin: 0
+
+  main
+    text-align: center
+    color: white
+    min-width: 100vw
+    min-height: 100vh
+    overflow: hidden
+
+    &.bg-image
+      background-image: url("/img/beach flipped extended.webp")
+      background-repeat: no-repeat
+      background-size: cover
+      background-position: 40%
+
+      @media only screen and (max-width: 768px)
+        background-size: cover
+        background-position: 40%
+
+  .info-box
+    position: absolute
+    top: 12%
+    right: 12%
+    width: 25em
+    height: 38em
+    border-radius: 22px
+    padding: 2em
+    background-color: transparent
+    perspective: 100px
+    display: flex
+    align-items: center
+    justify-content: center
+
+    @media only screen and (max-width: 768px)
+      top: 50%
+      right: 50%
+      transform: translate(50%, -50%)
+      width: 75%
+
+  .the-easy-thing
+    position: absolute
+    inset: 0
+    width: 100%
+    height: 100%
+    border-radius: 22px
+
+  .info-box-bg
+    border: 2px solid #99469e
+    background-color: rgba(48, 44, 49, 0.95)
+    box-shadow: 0px 0px 99px #000000
+    z-index: 0
+    transform: rotateY(calc(.25deg * var(--pointerX))) rotateX(calc(-.25deg * var(--pointerY))) !important
+
+  .info-box-ren
+    background: transparent url("/img/Ren web.png") -20% -5% no-repeat padding-box
+    background-size: 125%
+    filter: blur(2px)
+    opacity: 0.75
+    z-index: 1
+    transform: rotateY(calc(.25deg * var(--pointerX))) rotateX(calc(-.25deg * var(--pointerY)))
+    perspective: 100px
+
+    @media only screen and (max-width: 768px)
+      background-size: 140%
+
+  .info-box-text
+    position: absolute
+    width: calc(100% - 4em)
+    z-index: 2
+
+  .name
+    font: normal normal bold 52px/69px Segoe UI
+    color: white
+
+    @media only screen and (max-width: 768px)
+      font: normal normal bold 32px/42px Segoe UI
+
+  .description
+    font: normal normal 300 20px/27px Segoe UI
+
+  .links
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 1em
+
+    div:not(:last-child)
+      margin-bottom: 0.75em
+
+    a.link
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 15em
+      height: 3em
+      border-radius: 100px
+      background-color: transparent
+      border: 1px solid white
+      text-decoration: none
+      color: white
+      font: normal normal 300 20px/27px Segoe UI
+      transition: all 0.2s ease-in-out
+
+      @media only screen and (max-width: 768px)
+        width: 10em
+        height: 2.5em
+
+      &:hover
+        background-color: white
+        color: black
+        box-shadow: 0px 10px 30px #000000
+
+      &:hover img
+        filter: brightness(0)
+
+      img
+        width: auto
+        height: 1.5em
+        margin-right: 0.5em
+        transition: all 0.2s ease-in-out
+
+    div.lil-message
+      position: absolute
+      left: 0
+      width: 100%
+      font: 600 15px/20px Segoe UI
+      transform: translateY(25%)
+      opacity: 0
+
+      span
+        background-color: rgba(0, 0, 0, 0.75)
+        box-shadow: 0px 0px 15px #000000
+        border-radius: 100px
+</style>
+
 <BaseLayout title="NootSponge">
-  <main
-    class="bg-cover bg-[-11rem] md:bg-center min-h-screen text-center text-white"
-    style={{ backgroundImage: "url('/img/dark-city-background.jpg')" }}
-  >
-    <div
-      class="w-full lg:w-96 md:w-72 m-auto pt-20 lg:mr-96 md:mr-72 flex items-center justify-center flex-col md:float-right"
-    >
-      <Booper />
-      <span class="text-4xl font-semibold text-[#e7da48]">NootSponge</span>
-      <br />
-      <span class="font-light text-[#e7da48] mt-1"> Software Developer</span>
-      <a
-        href="/about"
-        class="font-light transition-colors text-[#e7da48] hover:text-white underline md:no-underline"
-      >
-        about me
-      </a>
-      <span
-        class="font-light transition-colors text-[#e7da48] hover:text-white underline md:no-underline"
-      >
-        <a
-          class="transition-colors hover:text-white"
-          href="mailto:contact@nootsponge.com"
-        >
-          contact@nootsponge.com
-        </a>
-      </span>
-      <div
-        class="w-full flex flex-column flex-wrap gap-y-4 justify-center items-center space-x-4 mt-3 px-6"
-      >
-        <a href="https://twitter.com/renfloof" target="_blank" rel="noreferrer">
-          <img
-            src="/img/twitter-logo.png"
-            class="w-12 h-auto transition hover:brightness-75"
-            alt="Twitter"
-          />
-        </a>
-        <a href="https://cyberfurz.social/@NootSponge" target="_blank" rel="me">
-          <img
-            src="/img/mastodon-logo.png"
-            class="w-12 h-auto transition hover:brightness-75"
-            alt="Mastodon"
-          />
-        </a>
-        <a
-          href="https://discord.com/users/148680149548793856"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img
-            src="/img/discord-logo.png"
-            class="w-12 h-auto transition hover:brightness-75"
-            alt="Discord"
-          />
-        </a>
-        <a href="https://t.me/nootsponge" target="_blank" rel="noreferrer">
-          <img
-            src="/img/telegram-logo.png"
-            class="w-12 h-auto transition hover:brightness-75"
-            alt="Telegram"
-          />
-        </a>
-        <a
-          href="https://matrix.to/#/@nootsponge:cyberfurz.chat"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img
-            src="/img/matrix-logo.png"
-            class="w-12 h-auto transition hover:brightness-75"
-            alt="Matrix"
-          />
-        </a>
-        <a
-          href="https://steamcommunity.com/id/nootspongeborb"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img
-            src="/img/steam-logo.png"
-            class="w-12 h-auto transition hover:brightness-75"
-            alt="Steam"
-          />
-        </a>
-        <a href="https://source.n00t.io" target="_blank" rel="noreferrer">
-          <img
-            src="/img/git-logo.png"
-            class="w-12 h-auto transition hover:brightness-75"
-            alt="Git"
-          />
-        </a>
+  <main class="bg-image">
+    <div class="info-box">
+      <div class="info-box-ren the-easy-thing"></div>
+      <div class="info-box-bg the-easy-thing"></div>
+      <div class="info-box-text">
+        <h1 class="name">NootSponge</h1>
+        <div class="description">
+          <p>software engineer</p>
+          <p>college student</p>
+          <p>level 20</p>
+          <p>he/him</p>
+        </div>
+        <div class="links">
+          <div>
+            <a
+              class="link"
+              rel="me"
+              href="https://cyberfurz.social/@NootSponge"
+              target="_blank"
+            >
+              <img src="/img/mastodon-logo.png" alt="Mastodon" />
+              <span>Mastodon</span>
+            </a>
+            <div class="lil-message">
+              <span>i post a lot here :></span>
+            </div>
+          </div>
+          <div>
+            <a
+              class="link"
+              rel="me"
+              href="https://discord.com/users/148680149548793856"
+              target="_blank"
+            >
+              <img src="/img/discord-logo.png" alt="Discord" />
+              <span>Discord</span>
+            </a>
+            <div class="lil-message">
+              <span>my dms are open :3</span>
+            </div>
+          </div>
+          <div>
+            <a
+              class="link"
+              rel="me"
+              href="https://t.me/nootsponge"
+              target="_blank"
+            >
+              <img src="/img/telegram-logo.png" alt="Telegram" />
+              <span>Telegram</span>
+            </a>
+            <div class="lil-message">
+              <span>my dms are open owo >:3</span>
+            </div>
+          </div>
+          <div>
+            <a
+              class="link"
+              rel="me"
+              href="https://steamcommunity.com/id/nootspongeborb/"
+              target="_blank"
+            >
+              <img src="/img/steam-logo.png" alt="Steam" />
+              <span>Steam</span>
+            </a>
+            <div class="lil-message">
+              <span>im bad at games xwx</span>
+            </div>
+          </div>
+          <div>
+            <a
+              class="link"
+              rel="me"
+              href="https://source.n00t.io"
+              target="_blank"
+            >
+              <img src="/img/git-logo.png" alt="Git" />
+              <span>Git</span>
+            </a>
+            <div class="lil-message">
+              <span>open source ftw ;3</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
+  <footer style="display:none;">more coming soon ;3</footer>
 </BaseLayout>
+
+<script>
+  // source: https://git.joinfirefish.org/firefish/joinfirefish/-/blob/d58f08e6a7f35fa17780a198dd21dbdd4cd92137/src/components/Hero.astro#L309
+  import { gsap } from "gsap";
+
+  gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+    gsap.matchMedia().add("(pointer: fine)", () => {
+      const parallax = document.querySelectorAll(`.info-box`);
+
+      document.addEventListener("pointermove", ({ x, y }) => {
+        const boundX = gsap.utils.mapRange(0, window.innerWidth, -100, 100, x);
+        const boundY = gsap.utils.mapRange(0, window.innerHeight, -100, 100, y);
+
+        parallax.forEach((el) => {
+          el.setAttribute(
+            "style",
+            `--pointerX: ${(boundX / 100).toString()}; --pointerY: ${(
+              boundY / 100
+            ).toString()}`
+          );
+        });
+      });
+    });
+  });
+
+  const links = document.querySelectorAll(`.links > div`);
+
+  links.forEach((el) => {
+    const aElement = el.childNodes[1];
+    const lilMessage = el.childNodes[3];
+
+    aElement.addEventListener("mouseenter", () => {
+      gsap.to(lilMessage, {
+        opacity: 1,
+        translateY: "0%",
+        duration: 0.2,
+        ease: "power2.inOut",
+      });
+    });
+    aElement.addEventListener("mouseleave", () => {
+      gsap.to(lilMessage, {
+        opacity: 0,
+        translateY: "25%",
+        duration: 0.2,
+        ease: "power2.inOut",
+      });
+    });
+  });
+</script>
