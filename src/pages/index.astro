@@ -1,74 +1,62 @@
 ---
-import Hero from "../components/Hero.astro";
-import Webrings from "../components/Webrings.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SocialButton from "../components/SocialButton.astro";
+import Webrings from "../components/Webrings.astro";
+import WebButtons from "../components/WebButtons.astro";
+
+import socials from "../data/socials.json";
 ---
 
-<style lang="sass">
-  main
-    text-align: center
-    color: white
-    overflow: hidden
+<BaseLayout title="NootSponge">
+  <main
+    class="top-0 absolute w-full font-mono text-white text-center bg-circle-gradient from-slate-900 to-black"
+  >
+    <div class="w-1/3 flex flex-col gap-8 pt-24 m-auto">
+      <img
+        class="rounded-full w-40 h-40 object-cover m-auto"
+        src="/img/ren profile.jpg"
+      />
+      <h1 class="text-6xl font-bold m-0">NootSponge</h1>
+      <p class="mb-4">Your king~</p>
+      <div class="flex flex-row justify-evenly gap-8">
+        <div class="flex flex-col justify-center w-2/5 gap-4">
+          {
+            socials.map((r) => {
+              if (r.type === "text") return <p class="pt-6">{r.text}</p>;
 
-    section:first-of-type
-      margin-top: 5em
-
-  .wave
-    position: absolute
-    width: 100vw
-    z-index: -1
-    overflow: hidden
-    fill: #312a32
-</style>
-
-<BaseLayout title="nootsponge - software engineer">
-  <main>
-    <Hero />
-    <div class="wave">
-      <svg
-        version="1.1"
-        id="visual"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 960 258"
-        xml:space="preserve"
-        preserveAspectRatio="none"
-      >
-        <path
-          class="st0"
-          d="M0,258.5c0-69,0-138,0-207l20,0.7c20,0.6,60,2,100,18.3s80,47.7,120,51.5s80-19.8,120-39.2
-	c40-19.3,80-34.3,120-31.6c40,2.6,80,23,120,20.5s80-27.9,120-14.4s80,65.9,120,62.7s80-61.8,100-91.2l20-29.3c0,86,0,172,0,258
-	C640,257.8,320,258.2,0,258.5z"
-        ></path>
-      </svg>
+              return (
+                <SocialButton
+                  link={r.link}
+                  color={r.color}
+                  icon={r.icon}
+                  text={r.text}
+                />
+              );
+            })
+          }
+        </div>
+        <div class="w-2/5 flex flex-col gap-12">
+          <section class="pt-6 flex flex-col gap-3">
+            <h1>~ About ~</h1>
+            <p>20 year old compsci furry.</p>
+            <a
+              class="underline hover:text-gold"
+              href="https://en.pronouns.page/@nootsponge">he/him.</a
+            >
+            <p>Very lonely.</p>
+          </section>
+          <Webrings />
+          <WebButtons />
+        </div>
+      </div>
+      <footer class="mt-12 mb-20 text-xs">
+        <a href="/legal" class="underline hover:text-gold">Copyright stuff.</a>
+        <a
+          href="https://github.com/nootsponge/nootsponge.com"
+          class="underline hover:text-gold"
+          title="Yes I use GitHub it has superior CI/CD">Source.</a
+        >
+      </footer>
     </div>
-    <Webrings />
   </main>
-  <footer style="display:none;">more coming soon ;3</footer>
 </BaseLayout>
-
-<script>
-  import { gsap } from "gsap";
-
-  gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
-    var scrollDuration = 3;
-
-    if (window.scrollY != 0) {
-      scrollDuration = 0;
-    }
-
-    gsap.to(".wave", {
-      opacity: 1,
-      translateY: "-=50%",
-      duration: scrollDuration,
-      ease: "power4.out",
-    });
-
-    gsap.to(".scroll", {
-      opacity: "+=1",
-      translateY: "-=105%",
-      duration: 3,
-      ease: "power4.out",
-    });
-  });
-</script>

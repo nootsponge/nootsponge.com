@@ -1,0 +1,19 @@
+---
+interface Props {
+  link?: string;
+  color?: string;
+  icon?: string;
+  text: string;
+}
+
+const { link, color, icon, text } = Astro.props;
+---
+
+<a
+  href={link}
+  target="_blank"
+  rel="noreferrer"
+  class={`bg-${color} text-white p-3 border-white border-4 transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_white] outline-none flex flex-row gap-2 justify-center items-center`}
+>
+  <img class="w-6" src={icon} /><span class="font-mono">{text}</span></a
+>

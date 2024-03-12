@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<style lang="sass">
+  p, a
+    margin-top: 1rem
+
+  h2, h3
+    margin-top: 2rem
+</style>
+
+<BaseLayout title="Legal stuff">
+  <main
+    class="top-0 absolute w-full min-h-screen font-mono text-white text-center bg-circle-gradient from-slate-900 to-black"
+  >
+    <div
+      class="w-1/3 pt-24 m-auto flex flex-col justify-center items-center text-sm"
+    >
+      <h1 class="text-4xl font-bold">Legal</h1>
+
+      <p>
+        All content on this website is Copyright &copy; NootSponge 2024. All
+        logos and trademarks belong to their respective owners. All rights
+        reserved.
+      </p>
+
+      <p>
+        Site favicon attribution: <a
+          class="underline hover:text-gold"
+          href="https://www.flaticon.com/free-icons/crown"
+          >Crown icons created by iconixar - Flaticon</a
+        >.
+      </p>
+
+      <p>Is this even necessary anymore?</p>
+
+      <a href="/" class="underline hover:text-gold">Go home.</a>
+    </div>
+  </main>
+</BaseLayout>

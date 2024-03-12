@@ -1,17 +1,21 @@
 ---
 const { title } = Astro.props;
-import "normalize.css/normalize.css";
-import "../styles/global.sass";
+import "modern-normalize/modern-normalize.css";
+// import "../styles/global.sass";
+import "/MonaspaceNeonVarVF[wght,wdth,slnt].woff2";
 ---
+
+<style is:global>
+  html {
+    scrollbar-color: theme(colors.slate.500) theme(colors.slate.900);
+    scrollbar-width: thin;
+  }
+</style>
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!-- <link
-      rel="icon"
-      type="image/png"
-      href="/img/ren-headshot-transparent.png"
-    /> -->
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#6045CC" />

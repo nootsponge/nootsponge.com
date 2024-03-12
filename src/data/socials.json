@@ -1,0 +1,78 @@
+[
+  {
+    "type": "text",
+    "text": "~ Contact ~"
+  },
+  {
+    "text": "Discord",
+    "link": "https://discord.com/users/148680149548793856",
+    "color": "discord",
+    "icon": "/img/discord.svg"
+  },
+  {
+    "text": "Telegram",
+    "link": "https://t.me/nootsponge",
+    "color": "telegram",
+    "icon": "/img/telegram.svg"
+  },
+  {
+    "type": "text",
+    "text": "~ Content ~"
+  },
+  {
+    "text": "Furaffinity",
+    "link": "https://www.furaffinity.net/user/nootsponge/",
+    "color": "black",
+    "icon": "/img/fa_logo.png"
+  },
+  {
+    "text": "Twitch",
+    "link": "https://www.twitch.tv/nootsponge",
+    "color": "twitch",
+    "icon": "/img/twitch.svg"
+  },
+  {
+    "text": "TikTok",
+    "link": "https://www.tiktok.com/@nootsponge",
+    "color": "black",
+    "icon": "/img/tiktok.svg"
+  },
+  {
+    "type": "text",
+    "text": "~ Social Media ~"
+  },
+  {
+    "text": "Bluesky",
+    "link": "https://bsky.app/profile/nootsponge.com",
+    "color": "black",
+    "icon": "/img/bluesky.svg"
+  },
+  {
+    "text": "Mastodon",
+    "link": "https://cyberfurz.social/@nootsponge",
+    "color": "mastodon",
+    "icon": "/img/mastodon.svg"
+  },
+  {
+    "text": "Steam",
+    "link": "https://steamcommunity.com/id/nootspongeborb",
+    "color": "steam",
+    "icon": "/img/steam.svg"
+  },
+  {
+    "text": "GitHub",
+    "link": "https://github.com/nootsponge",
+    "color": "black",
+    "icon": "/img/github.svg"
+  },
+  {
+    "type": "text",
+    "text": "Support me <3"
+  },
+  {
+    "text": "Ko-fi",
+    "link": "https://ko-fi.com/nootsponge",
+    "color": "black",
+    "icon": "/img/ko-fi.svg"
+  }
+]
