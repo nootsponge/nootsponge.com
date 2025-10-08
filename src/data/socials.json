@@ -26,10 +26,10 @@
     "icon": "/img/fa_logo.png"
   },
   {
-    "text": "Twitch",
-    "link": "https://www.twitch.tv/nootsponge",
-    "color": "twitch",
-    "icon": "/img/twitch.svg"
+    "text": "Livestreams",
+    "link": "https://gooey.monster",
+    "color": "[#ac98ff]",
+    "icon": "/img/owncast.svg"
   },
   {
     "text": "TikTok",
