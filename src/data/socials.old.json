@@ -20,6 +20,18 @@
     "text": "~ Content ~"
   },
   {
+    "text": "Furaffinity",
+    "link": "https://www.furaffinity.net/user/nootsponge/",
+    "color": "black",
+    "icon": "/img/fa_logo.png"
+  },
+  {
+    "text": "Livestreams",
+    "link": "https://gooey.monster",
+    "color": "[#ac98ff]",
+    "icon": "/img/owncast.svg"
+  },
+  {
     "text": "TikTok",
     "link": "https://www.tiktok.com/@nootsponge",
     "color": "black",
@@ -28,6 +40,18 @@
   {
     "type": "text",
     "text": "~ Social Media ~"
+  },
+  {
+    "text": "Bluesky",
+    "link": "https://bsky.app/profile/nootsponge.com",
+    "color": "black",
+    "icon": "/img/bluesky.svg"
+  },
+  {
+    "text": "Mastodon",
+    "link": "https://cyberfurz.social/@nootsponge",
+    "color": "mastodon",
+    "icon": "/img/mastodon.svg"
   },
   {
     "text": "Steam",
